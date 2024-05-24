@@ -11,7 +11,7 @@ const seed = bip39.mnemonicToSeedSync(mnemonic.mnemonic);
 const hdWallet = hdkey.fromMasterSeed(seed);
 
 function generateAddress(index) {
-  const ledgerPath = `m/44'/60'/${index}'/0/0`; // metamask use BIP-44 path aka m/44'/60'/0'/0/${index}
+  const ledgerPath = `m/44'/60'/${index}'/0/0`; // metamask varies the path according to the address_index parameter instead of account' parameter. Metamask path is m/44'/60'/0'/0/${index}
   const wallet = hdWallet.derivePath(ledgerPath).getWallet();
   const address = wallet.getAddressString();
   const privateKey = wallet.getPrivateKeyString();
